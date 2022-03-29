@@ -10,7 +10,7 @@ export class User {
     private readonly bio: string,
     public readonly id: string
   ) { }
-  public createProfileDiv(): void {
+  public createProfileDiv(container: HTMLDivElement): void {
     const div = document.createElement('div');
     let h3 = document.createElement('h3');
     h3.innerText = this.userName;
@@ -18,6 +18,8 @@ export class User {
     h5.innerText = this.gender;
     let p = document.createElement('p');
     p.innerText = this.bio;
+    div.append(h3, h5, p);
+    document.querySelector(`${container}`).append(div)
   }
   public sendToDb(): void {
     const userToAdd = {
