@@ -1,26 +1,31 @@
 import { db } from "./firebase";
-import { update, push, ref } from "firebase/database";
+import { update, push, ref, DatabaseReference } from "firebase/database";
 
 export class User {
   public status: string;
+  public readonly id: string
   constructor(
     public readonly userName: string,
     public readonly password: string,
     private readonly gender: string,
     private readonly bio: string,
-    public readonly id: string
-  ) { }
+  ) {
+
+
+  }
   public createProfileDiv(container: HTMLDivElement): void {
-    const div = document.createElement('div');
-    let h3 = document.createElement('h3');
+    const div: HTMLDivElement = document.createElement('div');
+    let h3: HTMLHeadingElement = document.createElement('h3');
+    let h5: HTMLHeadElement = document.createElement('h5');
+    let p: HTMLParagraphElement = document.createElement('p');
+
     h3.innerText = this.userName;
-    let h5 = document.createElement('h5');
     h5.innerText = this.gender;
-    let p = document.createElement('p');
     p.innerText = this.bio;
     div.append(h3, h5, p);
     document.querySelector(`${container}`).append(div)
   }
+
   public sendToDb(): void {
     const userToAdd = {
       userName: this.userName,
@@ -28,7 +33,7 @@ export class User {
       gender: this.gender,
       bio: this.bio
     }
-    const dbRef = ref(db, '/Users');
+    const dbRef: DatabaseReference = ref(db, '/Users');
     const newKey: string = push(dbRef).key;
     const newUser = {};
     newUser[newKey] = userToAdd;

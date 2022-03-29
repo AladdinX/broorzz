@@ -1,5 +1,5 @@
 import { db } from "./firebase";
-import { update, push, ref } from "firebase/database";
+import { update, push, ref, DatabaseReference } from "firebase/database";
 
 export class Comment {
   constructor(
@@ -21,7 +21,7 @@ export class Comment {
       name: this.name,
       comment: this.comment,
     }
-    const dbRef = ref(db, `/Comments/${subject}`);
+    const dbRef: DatabaseReference = ref(db, `/Comments/${subject}`);
     const newKey: string = push(dbRef).key;
     const newUser = {};
     newUser[newKey] = commentToAdd;
