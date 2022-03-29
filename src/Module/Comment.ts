@@ -1,3 +1,6 @@
+import { db } from "./firebase";
+import { update, push, ref } from "firebase/database";
+
 export class Comment {
     constructor(
         public readonly name:string,
@@ -23,7 +26,7 @@ export class Comment {
         const dbRef = ref(db, '/Comments');
         const newKey: string = push(dbRef).key;
         const newUser = {};
-        newUser[newKey] = userToAdd;
+        newUser[newKey] = commentToAdd;
         update(dbRef, newUser);
       }
 }
