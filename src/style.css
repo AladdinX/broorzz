@@ -1,6 +1,5 @@
 body {
 	margin: 0; 
-	font-family: 'Work Sans', sans-serif;
 	font-weight: 800;
 }
 .titel{
@@ -28,6 +27,7 @@ header::after {
 nav {
   float: right;
   display: flex;
+  font-family: 'Work Sans', sans-serif;
 }
 
 nav ul {
