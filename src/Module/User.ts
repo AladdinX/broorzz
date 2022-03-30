@@ -3,7 +3,7 @@ import { update, push, ref, DatabaseReference } from "firebase/database";
 
 export class User {
   public status: string;
-  public readonly id: string
+  public readonly id: string;
   constructor(
     public readonly userName: string,
     public readonly password: string,
@@ -34,7 +34,7 @@ export class User {
       bio: this.bio
     }
     const dbRef: DatabaseReference = ref(db, '/Users');
-    const newKey: string = push(dbRef).key;
+    const newKey: string = this.userName;
     const newUser = {};
     newUser[newKey] = userToAdd;
     update(dbRef, newUser);
