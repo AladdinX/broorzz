@@ -7,29 +7,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <script src="main.ts" type="module"></script>
 </head>
 
 <body>
     <div class="signup-box">
         <h1> Sign up!</h1>
-        <form>
-            <label> Username</label>
-            <input type="text" placeholder="Username">
+        <form id="signup-form">
+            <label>Username</label>
+            <input id="user-name" type="text" placeholder="Username">
             <label> Password</label>
-            <input type="text" placeholder="Password">
+            <input id="new-password" type="text" placeholder="Password">
             <label for="gender"> Select you gender</label>
-            <select name="gender">
+            <select id="gender" name="gender">
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">other</option>
             </select>
-            <label> Bio</label>
-            <textarea name="textarea"
-            rows="7" cols="30"
-            placeholder="Write about yourself..."></textarea>
-
-
-            <input type="button" value='Submit'>
+            <label>Bio</label>
+            <textarea name="textarea" id="bio" rows="7" cols="30" placeholder="Write about yourself..."></textarea>
+            <button id="new-user-button">Sign Up!</button>
         </form>
         <p class="account-exist"> Already have an account?<a href="index.html"> Log in here!</a></p>
     </div>
