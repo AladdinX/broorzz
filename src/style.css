@@ -1,5 +1,6 @@
 body {
 	margin: 0;
+   background-color:lightgreen;
     font-family: 'Roboto', sans-serif;
     padding:0;
     background-image: url(https://i.stack.imgur.com/jGlzr.png);
@@ -137,3 +138,29 @@ input[type='button'] {
 .create-account{
   text-align: center;
 }
+
+/* Sub forum */
+.bottom {
+  display: flex;
+  color: grey;
+  font-size: 12px;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+h4, ol {
+  margin: 0;
+}
+
+p {
+  margin: 5px 0;
+}
+.row {
+  padding: 5px 0;
+}
+
+.timestamp {
+  padding-right: 10px;
+}
+
