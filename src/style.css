@@ -1,9 +1,11 @@
 body {
 	margin: 0; 
-	font-weight: 800;
-      background-color:lightgreen;
+   background-color:lightgreen;
     font-family: 'Roboto', sans-serif;
+    padding:0;
 }
+
+/* Header */
 .titel{
     color: #444;
   text-decoration: none;
@@ -25,7 +27,7 @@ header::after {
   clear: both;
 }
 
-
+/* Nav bar */
 nav {
   float: right;
   display: flex;
@@ -46,6 +48,7 @@ nav li {
 }
 
 nav a {
+  font-weight: 800;
   color: #444;
   text-decoration: none;
   font-size: 14px;
@@ -65,7 +68,7 @@ nav a::before {
 nav a:hover::before {
   width: 100%;
 }
-
+/* Signup */
 .signup-box {
     width: 360px;
     height: 620px;
@@ -107,4 +110,19 @@ input[type='button'] {
     background-color: grey;
     color: white;
     font-size: 18px;
+}
+
+/* Login */
+.login-box {
+  width: 360px;
+  height: 400px;
+  margin:auto;
+  border-radius: 3px;
+
+
+
+}
+
+.create-account{
+  text-align: center;
 }
