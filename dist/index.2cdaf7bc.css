@@ -1,12 +1,13 @@
 body {
   background-color: #90ee90;
+  background-image: url("https://i.stack.imgur.com/jGlzr.png");
   margin: 0;
   padding: 0;
   font-family: Roboto, sans-serif;
 }
 
 .titel {
-  color: #444;
+  color: wheat;
   font-size: 30px;
   text-decoration: none;
 }
@@ -17,7 +18,7 @@ body {
 }
 
 header {
-  background: #90ee90;
+  background: #000;
 }
 
 header:after {
@@ -46,7 +47,7 @@ nav li {
 }
 
 nav a {
-  color: #444;
+  color: wheat;
   font-size: 14px;
   font-weight: 800;
   text-decoration: none;
@@ -56,7 +57,7 @@ nav a:before {
   content: "";
   height: 5px;
   width: 0%;
-  background-color: #444;
+  background-color: wheat;
   display: block;
   position: absolute;
   top: 0;
@@ -64,6 +65,13 @@ nav a:before {
 
 nav a:hover:before {
   width: 100%;
+}
+
+.footer {
+  height: 100px;
+  background-color: #000;
+  margin-top: 100px;
+  position: relative;
 }
 
 .signup-box {
@@ -117,6 +125,33 @@ input[type="button"] {
 
 .create-account {
   text-align: center;
+}
+
+.bottom {
+  color: gray;
+  font-size: 12px;
+  display: flex;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+h4, ol {
+  margin: 0;
+}
+
+p {
+  margin: 5px 0;
+}
+
+.row {
+  padding: 5px 0;
+}
+
+.timestamp {
+  padding-right: 10px;
 }
 
 /*# sourceMappingURL=index.2cdaf7bc.css.map */
