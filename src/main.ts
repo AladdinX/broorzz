@@ -1,5 +1,5 @@
 import { User } from "./Module/User";
-import { ref, onValue, update, remove, push, get, child, getDatabase, DataSnapshot, } from "firebase/database";
+import { ref, onValue, update, remove, push, get, child, getDatabase, DataSnapshot } from "firebase/database";
 import { db } from "./Module/firebase";
 
 //signIn
@@ -9,8 +9,10 @@ document.getElementById("login-btn").addEventListener("click", (e: Event) => {
   e.preventDefault();
   const dbRef = ref(db);
   get(child(dbRef, `/Users/`)).then((snapshot) => {
+    let userExist: boolean = false;
     for (let usr in snapshot.val()) {
       if (snapshot.val()[usr].userName == usrNameLogin.value) {
+        userExist = true;
         if (snapshot.val()[usr].password == usrPassLogin.value) {
           console.log('yay');
         }
@@ -18,8 +20,9 @@ document.getElementById("login-btn").addEventListener("click", (e: Event) => {
           alert('Wrong Password');
         }
       }
-      // Alaa: i couldn't find way to make else that work right now when i try it so it always end up with the error massege
-      //else alert('user not found!') 
+    }
+    if (!userExist) {
+      alert('user is not found')
     }
   });
 });

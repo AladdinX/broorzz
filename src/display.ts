@@ -1,3 +1,3 @@
-export function redirector(){
-    location.replace("index.html")
-  }
+export function redirector() {
+  location.replace("index.html")
+}
