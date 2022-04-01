@@ -6,27 +6,20 @@ import { db } from "./Module/firebase";
 const usrNameLogin: HTMLInputElement = document.querySelector('#user-name-login');
 const usrPassLogin: HTMLInputElement = document.querySelector('#user-password-login');
 document.getElementById("login-btn").addEventListener("click", (e: Event) => {
-  // console.log(usrNameLogin);
   e.preventDefault();
   const dbRef = ref(db);
   get(child(dbRef, `/Users/`)).then((snapshot) => {
     for (let usr in snapshot.val()) {
       if (snapshot.val()[usr].userName == usrNameLogin.value) {
         if (snapshot.val()[usr].password == usrPassLogin.value) {
-          console.log('yay')
+          console.log('yay');
+        }
+        else if (snapshot.val()[usr].password != usrPassLogin.value) {
+          alert('Wrong Password');
         }
       }
+      // Alaa: i couldn't find way to make else that work right now when i try it so it always end up with the error massege
+      //else alert('user not found!') 
     }
-    // if (usrNameLogin.value == "" || usrPassLogin.value == "")
-    //   console.log("fill in everything");
-    // else if (usrPassLogin.value == snapshot.val().password) {
-    //   console.log('same')
-    // } else if (usrPassLogin.value != snapshot.val().password) {
-    //   console.log("wrong password");
-    // } else if (snapshot.exists()) {
-    //   console.log(snapshot.val(), "is a user");
-    // } else {
-    //   console.log("This user does not exist");
-    // }
   });
 });
