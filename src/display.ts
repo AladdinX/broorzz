@@ -1,3 +1,3 @@
-export function hreff(){
+export function redirector(){
     location.replace("index.html")
   }

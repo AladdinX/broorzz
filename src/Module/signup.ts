@@ -1,4 +1,5 @@
 import { User } from "./User";
+import { redirector } from "../display";
 // SignUp
 const newUsrBtn: HTMLButtonElement = document.querySelector('#new-user-button');
 const newUsrName: HTMLInputElement = document.querySelector('#user-name');
@@ -8,5 +9,5 @@ newUsrBtn.addEventListener('click', (e: Event) => {
   new User(newUsrName.value, newPass.value, (document.querySelector('#gender') as HTMLSelectElement).value, (document.querySelector('#bio') as HTMLTextAreaElement).value).sendToDb();
   //write something to do here !!
   // go to the main page till example
-
+setInterval(redirector,1500)
 })
