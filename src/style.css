@@ -174,3 +174,6 @@ p {
   padding-right: 10px;
 }
 
+#thread-container{
+  display: 'none';
+}
