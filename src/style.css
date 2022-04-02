@@ -13,7 +13,7 @@ body {
   text-decoration: none;
   font-size: 30px;
 }
-.container {
+.container1 {
 	width: 80%;
 	margin: 0 auto;
 }
@@ -78,6 +78,11 @@ nav a:hover::before {
   height: 100px;
   margin-top: 100px;
 }
+.container{
+	width: 80%;
+	margin: 0 auto;
+}
+
 
 
 /* Signup */
@@ -134,6 +139,11 @@ input[type='button'] {
 
 
 }
+.sign{
+  color: blue;
+  text-decoration: underline;
+  cursor:pointer;
+}
 
 .create-account{
   text-align: center;
@@ -164,3 +174,8 @@ p {
   padding-right: 10px;
 }
 
+#thread-container{
+
+display: none;
+
+}
