@@ -6,7 +6,6 @@ export class Comment {
   constructor(
     public readonly name: string,
     public readonly comment: string,
-
   ) {
 
   }
@@ -15,7 +14,7 @@ export class Comment {
   }
 
   public display(): void {
-   
+
   }
   public sendToDb(subject: string): void {
     const commentToAdd = {

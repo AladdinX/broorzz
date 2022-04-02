@@ -2,7 +2,7 @@ import { db } from "./firebase";
 import { update, push, ref, DatabaseReference } from "firebase/database";
 
 export class User {
-  public status: string;
+  public status: string = 'Hello im using Broorz'
   public readonly id: string;
   constructor(
     public readonly userName: string,
@@ -38,5 +38,14 @@ export class User {
     const newUser = {};
     newUser[newKey] = userToAdd;
     update(dbRef, newUser);
+  }
+  public setStatus(): void {
+    let statusPrompt = prompt("How do you feel today?");
+    const statusRef = ref(db, `/Users/${this.userName}/status`)
+    const newKey: string = push(statusRef).key
+    const statusToAdd = { status: statusPrompt.valueOf() }
+    const newStatus = {};
+    newStatus[newKey] = statusToAdd;
+    update(statusRef, newStatus);
   }
 }

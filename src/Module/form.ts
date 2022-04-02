@@ -1,14 +1,15 @@
 import { db } from "./firebase";
 import { update, push, ref, DatabaseReference, onValue, DataSnapshot } from "firebase/database";
 import { Comment } from "./Comment";
-let comments:Comment[] = [];
 
-const commentbtn: HTMLButtonElement = document.querySelector('#comment-btn');
+let comments: Comment[] = [];
 
-commentbtn.addEventListener('click', (event: Event):void =>{
-    event.preventDefault();    
+const commentBtn: HTMLButtonElement = document.querySelector('#comment-btn');
+
+commentBtn.addEventListener('click', (event: Event): void => {
+    event.preventDefault();
     // const usrNameLogin:HTMLInputElement= document.querySelector('#username input') ;
-    const cars :HTMLTextAreaElement= document.querySelector('#cars');
+    const cars: HTMLTextAreaElement = document.querySelector('#cars');
     const musik = document.querySelector('#musik');
     const mat = document.querySelector('#mat');
     new Comment('shayan', cars.value).sendToDb('cars')
@@ -16,7 +17,7 @@ commentbtn.addEventListener('click', (event: Event):void =>{
 })
 
 const fetchCommentData = () => {
-    const dbRef = ref(db,'/Comments/cars')
+    const dbRef = ref(db, '/Comments/cars')
     onValue(dbRef, (snapshot) => {
         const CommentData = snapshot.val();
         console.log(CommentData);
@@ -25,7 +26,7 @@ const fetchCommentData = () => {
         // }
         comments = [];
 
-        for(const key in CommentData) {
+        for (const key in CommentData) {
             comments.push(new Comment(
                 CommentData[key].name,
                 CommentData[key].comment
@@ -33,12 +34,12 @@ const fetchCommentData = () => {
         }
         console.log(comments);
 
-       function display():void{
-           const cars = document.querySelector('#cars');
-           const div = document.querySelector('div');
-           div.append(cars);
+        function display(): void {
+            const cars = document.querySelector('#cars');
+            const div = document.querySelector('div');
+            div.append(cars);
             div.innerText = '';
-       }
+        }
 
     })
 }
