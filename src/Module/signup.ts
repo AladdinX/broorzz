@@ -3,7 +3,6 @@ import { redirector } from "../display";
 import { db } from "./firebase";
 import { ref, onValue, update, remove, push, get, child, getDatabase, DataSnapshot, } from "firebase/database";
 
-// const usrNameLogin: HTMLInputElement = document.querySelector('#user-name-login');
 
 // SignUp
 const newUsrBtn: HTMLButtonElement = document.querySelector('#new-user-button');
@@ -25,7 +24,7 @@ newUsrBtn.addEventListener('click', (e: Event) => {
       setInterval(redirector, 2000)
     }
     else {
-      alert('user exixt')
+      alert('user exist')
     }
   })
 })

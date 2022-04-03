@@ -2,17 +2,15 @@ import { db } from "./firebase";
 import { update, push, ref, DatabaseReference, onValue, DataSnapshot } from "firebase/database";
 import { Comment } from "./Comment";
 
+let userName: string = sessionStorage.getItem('usrName');
 let comments: Comment[] = [];
 
+const carsCmnt: HTMLDivElement = document.querySelector('#cars-comments');
 const commentBtn: HTMLButtonElement = document.querySelector('#comment-btn');
+const cars: HTMLTextAreaElement = document.querySelector('#cars');
 
-commentBtn.addEventListener('click', (event: Event): void => {
-    event.preventDefault();
-    // const usrNameLogin:HTMLInputElement= document.querySelector('#username input') ;
-    const cars: HTMLTextAreaElement = document.querySelector('#cars');
-    const musik = document.querySelector('#musik');
-    const mat = document.querySelector('#mat');
-    new Comment('shayan', cars.value).sendToDb('cars')
+commentBtn.addEventListener('click', (): void => {
+    new Comment(userName, cars.value).sendToDb('cars')
     fetchCommentData();
 })
 
@@ -20,26 +18,18 @@ const fetchCommentData = () => {
     const dbRef = ref(db, '/Comments/cars')
     onValue(dbRef, (snapshot) => {
         const CommentData = snapshot.val();
-        console.log(CommentData);
-        // for(const comment of comments){
-        //     comment.clearDom();
-        // }
+        for (const comment of comments) {
+            comment.clearDom();
+        }
         comments = [];
-
         for (const key in CommentData) {
             comments.push(new Comment(
-                CommentData[key].name,
+                CommentData[key].usrName,
                 CommentData[key].comment
             ));
         }
-        console.log(comments);
-
-        function display(): void {
-            const cars = document.querySelector('#cars');
-            const div = document.querySelector('div');
-            div.append(cars);
-            div.innerText = '';
+        for (const comment of comments) {
+            comment.displayComment('#cars-comments');
         }
-
     })
 }
