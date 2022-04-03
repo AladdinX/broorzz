@@ -1,8 +1,8 @@
 import { db } from "./firebase";
-import { update, push, ref, DatabaseReference } from "firebase/database";
+import { update, push, ref, DatabaseReference, onValue } from "firebase/database";
 
 export class User {
-  public status: string;
+  public status: string = 'Hello im using Broorz'
   public readonly id: string;
   constructor(
     public readonly userName: string,
@@ -13,7 +13,7 @@ export class User {
 
 
   }
-  public createProfileDiv(container: HTMLDivElement): void {
+  public createProfileDiv(divId: string) {
     const div: HTMLDivElement = document.createElement('div');
     let h3: HTMLHeadingElement = document.createElement('h3');
     let h5: HTMLHeadElement = document.createElement('h5');
@@ -23,7 +23,7 @@ export class User {
     h5.innerText = this.gender;
     p.innerText = this.bio;
     div.append(h3, h5, p);
-    document.querySelector(`${container}`).append(div)
+    document.querySelector(`${divId}`).append(div)
   }
 
   public sendToDb(): void {
@@ -38,5 +38,26 @@ export class User {
     const newUser = {};
     newUser[newKey] = userToAdd;
     update(dbRef, newUser);
+  }
+  public setStatus(): void {
+    let statusPrompt = prompt("How do you feel today?");
+    const statusRef = ref(db, `/Users/${this.userName}/status`)
+    const newKey: string = push(statusRef).key
+    const statusToAdd = { status: statusPrompt.valueOf() }
+    const newStatus = {};
+    newStatus[newKey] = statusToAdd;
+    update(statusRef, newStatus);
+  }
+  public getStatus(divId: string): void {
+    const statusRef = ref(db, `/Users/${this.userName}/status`);
+    onValue(statusRef, (snapshot) => {
+      const statusData = snapshot.val();
+      for (const key in statusData) {
+        console.log(statusData[key].status)
+        let h5 = document.createElement('h5');
+        h5.innerText = statusData[key].status;
+        document.querySelector(`${divId}`).append(h5);
+      }
+    })
   }
 }

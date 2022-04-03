@@ -3,7 +3,6 @@ import { redirector } from "../display";
 import { db } from "./firebase";
 import { ref, onValue, update, remove, push, get, child, getDatabase, DataSnapshot, } from "firebase/database";
 
-// const usrNameLogin: HTMLInputElement = document.querySelector('#user-name-login');
 
 // SignUp
 const newUsrBtn: HTMLButtonElement = document.querySelector('#new-user-button');
@@ -19,14 +18,16 @@ newUsrBtn.addEventListener('click', (e: Event) => {
         userExist = true;
       }
     }
-    if (!userExist){
+    if (!userExist) {
       new User(newUsrName.value, newPass.value, (document.querySelector('#gender') as HTMLSelectElement).value, (document.querySelector('#bio') as HTMLTextAreaElement).value).sendToDb();
-      alert('User successfully signed up  ')
-      setInterval(redirector,2000)
-      }
-      else{alert('user exixt')
-      }
-  })})
+      alert('User successfully signed up')
+      setInterval(redirector, 2000)
+    }
+    else {
+      alert('user exist')
+    }
+  })
+})
 
 
 
