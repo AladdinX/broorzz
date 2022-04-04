@@ -13,7 +13,7 @@ export class Comment {
   }
   public displayComment(divId: string): void {
     const h3: HTMLHeadingElement = document.createElement('h3');
-    h3.id = this.id;
+    h3.className= this.name;
     h3.innerText = `${this.name}-::: ${this.comment}`;
     document.querySelector(`${divId}`).append(h3);
   }
