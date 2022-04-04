@@ -26,7 +26,8 @@ export class User {
     h5.innerText = this.gender;
     p.innerText = this.bio;
     img.src=this.emogi;
-    div.append(h3, h5, p);
+    console.log(this.emogi)
+    div.append(h3, h5, p,img);
     document.querySelector(`${divId}`).append(div)
   }
 

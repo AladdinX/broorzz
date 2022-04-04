@@ -9,16 +9,20 @@ const dbRef = ref(db, '/Users')
 onValue(dbRef, (snapshot) => {
   const profileData = snapshot.val();
   for (const key in profileData) {
-    allUsers.push(new User(profileData[key].userName,
+    console.log(profileData[key].img)
+    allUsers.push(new User
+      (profileData[key].userName,
       profileData[key].password,
       profileData[key].gender,
+      profileData[key].img,
       profileData[key].bio));
+      console.log(profileData[key].emogi)
     if (usrName == key) {
       myUser = new User(
         profileData[key].userName,
         profileData[key].password,
         profileData[key].gender,
-        profileData[key].emogi,
+        profileData[key].img,
         profileData[key].bio);
       myUser.createProfileDiv('#profile-container');
     }
