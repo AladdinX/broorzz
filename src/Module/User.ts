@@ -4,12 +4,15 @@ import { update, push, ref, DatabaseReference, onValue } from "firebase/database
 export class User {
   public status: string = 'Hello im using Broorz'
   public readonly id: string;
+  private readonly date = new Date();
   constructor(
     public readonly userName: string,
     public readonly password: string,
     private readonly gender: string,
     private readonly emogi:string,
     private readonly bio: string,
+    public readonly timestamp: string,
+
   ) {
 
 
@@ -48,7 +51,19 @@ export class User {
     let statusPrompt = prompt("How do you feel today?");
     const statusRef = ref(db, `/Users/${this.userName}/status`)
     const newKey: string = push(statusRef).key
-    const statusToAdd = { status: statusPrompt.valueOf() }
+    const statusToAdd = { status: statusPrompt.valueOf(),
+      timestamp : this.date.getFullYear() +
+      " " +
+      (this.date.getMonth() + 1) +
+      "/" +
+      this.date.getUTCDate() +
+      " - " +
+      this.date.getHours() +
+      ":" +
+      this.date.getMinutes(),
+       
+      
+    }
     const newStatus = {};
     newStatus[newKey] = statusToAdd;
     update(statusRef, newStatus);
@@ -60,7 +75,8 @@ export class User {
       for (const key in statusData) {
         console.log(statusData[key].status)
         let h5 = document.createElement('h5');
-        h5.innerText = statusData[key].status;
+        h5.innerText = statusData[key].status+statusData[key].timestamp;
+        // fixa så det inte går att scrolla
         document.querySelector(`${divId}`).append(h5);
       }
     })
