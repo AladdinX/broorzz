@@ -9,7 +9,6 @@ const dbRef = ref(db, '/Users')
 onValue(dbRef, (snapshot) => {
   const profileData = snapshot.val();
   for (const key in profileData) {
-    console.log(profileData[key].img)
     allUsers.push(new User
       (profileData[key].userName,
       profileData[key].password,
@@ -17,6 +16,7 @@ onValue(dbRef, (snapshot) => {
       profileData[key].img,
       profileData[key].bio));
       console.log(profileData[key].emogi)
+
     if (usrName == key) {
       myUser = new User(
         profileData[key].userName,
