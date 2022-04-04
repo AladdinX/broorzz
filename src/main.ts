@@ -18,8 +18,7 @@ document.getElementById("login-btn").addEventListener("click", (e: Event) => {
         userExist = true;
         if (snapshot.val()[usr].password == usrPassLogin.value) {
           sessionStorage.setItem('usrName', usrNameLogin.value);
-          loginBox.style.display = 'none'
-          threadContainer.style.display = 'block'
+          location.replace("thread.html");
         }
         else if (snapshot.val()[usr].password != usrPassLogin.value) {
           alert('Wrong Password');
