@@ -7,15 +7,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
-  <script src="Module/form.ts" type="module"></script>
+  <script src="./Module/profile.ts" type="module"></script>
+  <style>
+    aside {
+      width: 20%;
+      margin-left: 0px;
+      float: left;
+      overflow: auto;
+      text-align: justify;
+    }
+
+    .scroll {
+      margin-top: 7%;
+      height: 450px;
+      overflow: auto;
+      text-align: justify;
+    }
+  </style>
 </head>
 
 <body>
   <header>
     <a href="index.html" class="titel">Broorz</a>
-    <div class="container">
+    <div class="container1">
       <nav>
         <ul>
+          <li><a href="profiles.html">YourProfile</a></li>
           <li><a href="#">Topic one</a></li>
           <li><a href="#">Topic two</a></li>
           <li><a href="#">Topic three</a></li>
@@ -24,23 +41,41 @@
     </div>
   </header>
 
-  <div class="top-bar">
-    <h1> My forum</h1>
-  </div>
-  <div class="header">
-    <h4 class="sub-header"> Thread1 </h4>
-    <div class="sub"></div>
-    <div class="bottom">
-      <p class="timestamp"> 30/3/2022</p>
-      <p class="comment-count"> 4 comments</p>
+  <aside class='scroll' id="profiles-aside">
+  </aside>
+  <div class="main" id="main-div">
+    <div>
+      <div id="thread-container"></div>
+      <div>
+        <p id="cars-comments"> </p>
+        <textarea id="cars"> </textarea>
+        <button id="comment-btn" class="commentbtn"> Add Comment</button>
+      </div>
+      <div>
+        <p id="music-comments"> </p>
+        <textarea id="music"> </textarea>
+        <button id="comment-btn" class="commentbtn"> Add Comment</button>
+      </div>
+      <div>
+        <p id="food-comments"> </p>
+        <textarea id="food"> </textarea>
+        <button id="comment-btn" class="commentbtn"> Add Comment</button>
+      </div>
     </div>
   </div>
-  <textarea id="mat"> </textarea>
-  <button class="commentbtn"> Add Comment</button>
-  <div class="comments">
-    <div class="comment">
 
+  <footer class="footer">
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Policy</a></li>
+        </ul>
+      </nav>
     </div>
-
+  </footer>
 
 </body>
+
+</html>
