@@ -11,7 +11,6 @@ export class User {
     private readonly gender: string,
     private readonly emogi:string,
     private readonly bio: string,
-    public readonly timestamp: string,
 
   ) {
 
@@ -24,13 +23,15 @@ export class User {
     let h5: HTMLHeadElement = document.createElement('h5');
     let p: HTMLParagraphElement = document.createElement('p');
     let img:HTMLImageElement=document.createElement('img')
+    const divDeleter:HTMLButtonElement=document.createElement('button')
+    divDeleter.innerText='✖️'
 
     h3.innerText = this.userName;
     h5.innerText = this.gender;
     p.innerText = this.bio;
     img.src=this.emogi;
     console.log(this.emogi)
-    div.append(h3, h5, p,img);
+    div.append(h3, h5, p,img,divDeleter);
     document.querySelector(`${divId}`).append(div)
   }
 
