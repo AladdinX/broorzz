@@ -13,6 +13,7 @@ onValue(dbRef, (snapshot) => {
         profileData[key].userName,
         profileData[key].password,
         profileData[key].gender,
+        profileData[key].emogi,
         profileData[key].bio);
       myUser.createProfileDiv('#profile-container');
     }
