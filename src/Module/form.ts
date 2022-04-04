@@ -6,7 +6,7 @@ let userName: string = sessionStorage.getItem('usrName');
 let comments: Comment[] = [];
 
 const carsCmnt: HTMLDivElement = document.querySelector('#cars-comments');
-const commentBtn: HTMLButtonElement = document.querySelector('#comment-btn');
+const commentBtn: HTMLButtonElement = document.querySelector('#comment-btn-cars');
 const cars: HTMLTextAreaElement = document.querySelector('#cars');
 
 commentBtn.addEventListener('click', (): void => {
@@ -30,6 +30,13 @@ const fetchCommentData = () => {
         }
         for (const comment of comments) {
             comment.displayComment('#cars-comments');
+            if(userName===comment.name){
+                document.querySelectorAll(`.${userName}`).addEventListener("click",()=>{
+                    console.log('jjjj')
+                })
+            }
         }
+        
     })
 }
+
