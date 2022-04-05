@@ -6,16 +6,45 @@ let userName: string = sessionStorage.getItem('usrName');
 let comments: Comment[] = [];
 
 const carsCmnt: HTMLDivElement = document.querySelector('#cars-comments');
-const commentBtn: HTMLButtonElement = document.querySelector('#comment-btn-cars');
+const carsBtn: HTMLButtonElement = document.querySelector('#comment-btn-cars');
 const cars: HTMLTextAreaElement = document.querySelector('#cars');
 
-commentBtn.addEventListener('click', (): void => {
+carsBtn.addEventListener('click', (): void => {
     new Comment(userName, cars.value).sendToDb('cars')
-    fetchCommentData();
+    fetchCommentData('cars');
 })
 
-const fetchCommentData = () => {
-    const dbRef = ref(db, '/Comments/cars')
+
+
+const musicCmnt: HTMLDivElement = document.querySelector('#music-comments');
+const musicBtn: HTMLButtonElement = document.querySelector('#comment-btn-music');
+const music: HTMLTextAreaElement = document.querySelector('#music');
+
+musicBtn.addEventListener('click', (): void => {
+    new Comment(userName, music.value).sendToDb('music')
+    fetchCommentData('music');
+})
+
+ const foodCmnt: HTMLDivElement = document.querySelector('#food-comments');
+ const foodBtn: HTMLButtonElement = document.querySelector('#comment-btn-food');
+ const food: HTMLTextAreaElement = document.querySelector('#food');
+
+ foodBtn.addEventListener('click', (): void => {
+         new Comment(userName, food.value).sendToDb('food')
+  fetchCommentData('food');
+})
+
+
+
+
+
+
+
+
+
+
+function fetchCommentData (type: string){
+    const dbRef = ref(db, `/Comments/${type}`)
     onValue(dbRef, (snapshot) => {
         const CommentData = snapshot.val();
         for (const comment of comments) {
@@ -29,7 +58,7 @@ const fetchCommentData = () => {
             ));
         }
         for (const comment of comments) {
-            comment.displayComment('#cars-comments');
+            comment.displayComment(`#${type}-comments`);
             if (userName === comment.name) {
                 console.log(comment)
                 document.querySelector(`.${comment.name}`).addEventListener("click", () => {
@@ -40,4 +69,3 @@ const fetchCommentData = () => {
 
     })
 }
-
