@@ -30,6 +30,12 @@ onValue(dbRef, (snapshot) => {
     let h3: HTMLHeadingElement = document.createElement('h3');
     h3.innerText = user.userName;
     h3.id = user.userName;
+    const divDeleter: HTMLButtonElement = document.createElement('button')
+    divDeleter.innerText = '✖️';
+    divDeleter.addEventListener('click',function(e){
+      this.parentElement.remove();
+    })
+
     document.querySelector('#profiles-aside').append(h3)
     document.querySelector(`#${user.userName}`).addEventListener('click', () => {
       user.createProfileDiv('#main-div')
