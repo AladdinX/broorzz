@@ -30,13 +30,14 @@ const fetchCommentData = () => {
         }
         for (const comment of comments) {
             comment.displayComment('#cars-comments');
-            if(userName===comment.name){
-                document.querySelectorAll(`.${userName}`).addEventListener("click",()=>{
-                    console.log('jjjj')
+            if (userName === comment.name) {
+                console.log(comment)
+                document.querySelector(`.${comment.name}`).addEventListener("click", () => {
+                    console.log('jjjj');
                 })
             }
         }
-        
+
     })
 }
 
