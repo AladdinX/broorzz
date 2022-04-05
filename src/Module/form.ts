@@ -1,4 +1,5 @@
 import { db } from "./firebase";
+
 import { update, push, ref, onValue, remove } from "firebase/database";
 import { Comment } from "./Comment";
 
@@ -74,17 +75,51 @@ function fetchCommentData(type: string) {
                 CommentData[key].comment
             ));
         }
+
         for (const comment of comments) {
-            comment.displayComment(`#${type}-comments`);
-            if (userName === comment.name) {
-                console.log(comment.name)
-                let deletableComment = document.querySelectorAll(`.${comment.name}`);
-                for (let i = 0; i < deletableComment.length; i++) {
-                    document.querySelector(`.${comment.name}`).addEventListener('click', () => {
-                        console.log('ghj')
-                    })
-                }
-            }
+            comment.displayComment('#cars-comments');
         }
+
+        //Hämta alla html-element som har klassen comment.name
+        //loopa igenom html-elementen INTE comments som är en array med objekt
+        let deletableComment =document.querySelectorAll(`#cars-comments h3` );
+        for(let i=0;i<deletableComment.length;i++){ 
+            if (userName === deletableComment[i].className){
+               
+            deletableComment[i].addEventListener('click',(e)=>{
+                
+                const deleteRef: DatabaseReference = ref(db, '/Comments/' + deletableComment[i].className );
+                 remove(deleteRef);
+                 
+                      
+                console.log('ei')
+             })
+        }}
     })
 }
+
+const musicdiv = document.getElementById('music-div')
+const musik = document.getElementById('Musik')
+musik.addEventListener('click', (): void => {
+    console.log('kas')
+
+    musicdiv.style.display = 'block'
+    carsdiv.style.display = 'none'
+    fooddiv.style.display = 'none'
+})
+
+const carsdiv = document.getElementById('cars-div')
+const car = document.getElementById('Car')
+car.addEventListener('click', (): void => {
+    carsdiv.style.display = 'block'
+    musicdiv.style.display = 'none'
+    fooddiv.style.display = 'none'
+})
+
+const fooddiv = document.getElementById('food-div')
+const Food = document.getElementById('Food')
+Food.addEventListener('click', (): void => {
+    carsdiv.style.display = 'none'
+    musicdiv.style.display = 'none'
+    fooddiv.style.display = 'block'
+})
