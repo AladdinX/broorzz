@@ -34,33 +34,6 @@ foodBtn.addEventListener('click', (): void => {
 })
 
 
-const musicdiv = document.getElementById('music-div')
-const musik = document.getElementById('Musik')
-musik.addEventListener('click', (): void => {
-    console.log('kas')
-
-    musicdiv.style.display = 'block'
-    carsdiv.style.display = 'none'
-    fooddiv.style.display = 'none'
-})
-
-const carsdiv = document.getElementById('cars-div')
-const car = document.getElementById('Car')
-car.addEventListener('click', (): void => {
-    carsdiv.style.display = 'block'
-    musicdiv.style.display = 'none'
-    fooddiv.style.display = 'none'
-})
-
-const fooddiv = document.getElementById('food-div')
-const Food = document.getElementById('Food')
-Food.addEventListener('click', (): void => {
-    carsdiv.style.display = 'none'
-    musicdiv.style.display = 'none'
-    fooddiv.style.display = 'block'
-})
-
-
 function fetchCommentData(type: string) {
     const dbRef = ref(db, `/Comments/${type}`)
     onValue(dbRef, (snapshot) => {
@@ -82,19 +55,20 @@ function fetchCommentData(type: string) {
 
         //Hämta alla html-element som har klassen comment.name
         //loopa igenom html-elementen INTE comments som är en array med objekt
-        let deletableComment =document.querySelectorAll(`#cars-comments h3` );
-        for(let i=0;i<deletableComment.length;i++){ 
-            if (userName === deletableComment[i].className){
-               
-            deletableComment[i].addEventListener('click',(e)=>{
-                
-                const deleteRef: DatabaseReference = ref(db, '/Comments/' + deletableComment[i].className );
-                 remove(deleteRef);
-                 
-                      
-                console.log('ei')
-             })
-        }}
+        let deletableComment = document.querySelectorAll(`#cars-comments h3`);
+        for (let i = 0; i < deletableComment.length; i++) {
+            if (userName === deletableComment[i].className) {
+
+                deletableComment[i].addEventListener('click', (e) => {
+
+                    const deleteRef = ref(db, '/Comments/' + deletableComment[i].className);
+                    remove(deleteRef);
+
+
+                    console.log('ei')
+                })
+            }
+        }
     })
 }
 
