@@ -1,6 +1,6 @@
 import { User } from "./User";
 import { db } from "./firebase";
-import { update, push, ref, DatabaseReference, onValue, DataSnapshot } from "firebase/database";
+import {remove, update, push, ref, DatabaseReference, onValue, DataSnapshot } from "firebase/database";
 
 const usrName = sessionStorage.getItem('usrName');
 let myUser: User;
@@ -24,15 +24,29 @@ onValue(dbRef, (snapshot) => {
         profileData[key].img,
         profileData[key].bio);
       myUser.createProfileDiv('#main-div');
+
+      const divDeleter: HTMLButtonElement = document.querySelector('#divDeleter')
+      divDeleter.addEventListener('click',function(e){
+      // console.log(e.target) 
+      sessionStorage.clear();
+      location.replace("index.html");
+      const userDeletor: DatabaseReference = ref(db,'/Users/'+myUser.userName );
+      remove(userDeletor)
+
+  })
+
+      
     }
   }
   for (const user of allUsers) {
     let h3: HTMLHeadingElement = document.createElement('h3');
     h3.innerText = user.userName;
     h3.id = user.userName;
+ 
+
     document.querySelector('#profiles-aside').append(h3)
     document.querySelector(`#${user.userName}`).addEventListener('click', () => {
-      user.createProfileDiv('#main-div')
+    user.createProfileDiv('#main-div')
     })
   }
 })
