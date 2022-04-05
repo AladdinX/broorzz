@@ -1,5 +1,4 @@
 import { User } from "./User";
-import { redirector } from "../display";
 import { db } from "./firebase";
 import { ref, onValue, update, remove, push, get, child, getDatabase, DataSnapshot, } from "firebase/database";
 
@@ -25,7 +24,7 @@ newUsrBtn.addEventListener('click', (e: Event) => {
     if (!userExist) {
       new User(newUsrName.value, newPass.value, (document.querySelector('#gender') as HTMLSelectElement).value, (hantoosh),(document.querySelector('#bio') as HTMLTextAreaElement).value).sendToDb();
       alert('User successfully signed up')
-      setInterval(redirector, 2000)
+      setInterval(()=>location.replace('thread.html'), 2000)
     }
     else {
       alert('user exist')
