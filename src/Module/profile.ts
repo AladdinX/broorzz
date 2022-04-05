@@ -11,11 +11,10 @@ onValue(dbRef, (snapshot) => {
   for (const key in profileData) {
     allUsers.push(new User
       (profileData[key].userName,
-      profileData[key].password,
-      profileData[key].gender,
-      profileData[key].img,
-      profileData[key].bio));
-      console.log(profileData[key].emogi)
+        profileData[key].password,
+        profileData[key].gender,
+        profileData[key].img,
+        profileData[key].bio));
 
     if (usrName == key) {
       myUser = new User(
@@ -24,7 +23,7 @@ onValue(dbRef, (snapshot) => {
         profileData[key].gender,
         profileData[key].img,
         profileData[key].bio);
-      myUser.createProfileDiv('#profile-container');
+      myUser.createProfileDiv('#main-div');
     }
   }
   for (const user of allUsers) {
@@ -32,9 +31,11 @@ onValue(dbRef, (snapshot) => {
     h3.innerText = user.userName;
     h3.id = user.userName;
     document.querySelector('#profiles-aside').append(h3)
+    document.querySelector(`#${user.userName}`).addEventListener('click', () => {
+      user.createProfileDiv('#main-div')
+    })
   }
 })
-
 
 document.querySelector('#new-status').addEventListener('click', () => {
   myUser.setStatus();

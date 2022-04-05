@@ -19,17 +19,16 @@ export class User {
     let h3: HTMLHeadingElement = document.createElement('h3');
     let h5: HTMLHeadElement = document.createElement('h5');
     let p: HTMLParagraphElement = document.createElement('p');
-    let img:HTMLImageElement=document.createElement('img')
-    const divDeleter:HTMLButtonElement=document.createElement('button')
-    divDeleter.innerText='✖️'
+    let img: HTMLImageElement = document.createElement('img')
+    const divDeleter: HTMLButtonElement = document.createElement('button')
+    divDeleter.innerText = '✖️'
 
 
     h3.innerText = this.userName;
     h5.innerText = this.gender;
     p.innerText = this.bio;
     img.src = this.emogi;
-    console.log(this.emogi)
-    div.append(h3, h5, p,img,divDeleter);
+    div.append(h3, h5, p, img, divDeleter);
     document.querySelector(`${divId}`).append(div)
   }
 
@@ -52,7 +51,6 @@ export class User {
     const statusRef = ref(db, `/Users/${this.userName}/status`)
     const newKey: string = push(statusRef).key
     const statusToAdd = {
-      status: statusPrompt.valueOf(),
       timestamp: this.date.getFullYear() +
         " " +
         (this.date.getMonth() + 1) +
@@ -61,8 +59,8 @@ export class User {
         " - " +
         this.date.getHours() +
         ":" +
-        this.date.getMinutes(),
-
+        this.date.getMinutes() + ": ",
+      status: statusPrompt.valueOf()
 
     }
     const newStatus = {};
