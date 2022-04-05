@@ -1,5 +1,5 @@
 import { db } from "./firebase";
-import { update, push, ref, DatabaseReference, onValue,remove, DataSnapshot } from "firebase/database";
+import { update, push, ref, DatabaseReference, onValue, remove, DataSnapshot } from "firebase/database";
 import { Comment } from "./Comment";
 
 let userName: string = sessionStorage.getItem('usrName');
@@ -28,25 +28,26 @@ const fetchCommentData = () => {
                 CommentData[key].comment
             ));
         }
-        //Hämta alla html-element som har klassen comment.name
-        //loopa igenom html-elementen INTE comments som är en array med objekt
+
+
         for (const comment of comments) {
             comment.displayComment('#cars-comments');
-            if (userName === comment.name) {
-                console.log(comment.name)
-                let deletableComment =document.querySelectorAll(`.${comment.name}`);
-                for(let i=0;i<deletableComment.length;i++){
-                    document.querySelector(`.${comment.name}`).addEventListener('click',()=>{
-                        console.log('ghj')
-                    })
-                                }
-                //addEventListener("click", () => {
-                    const deleteRef: DatabaseReference = ref(db, '/Comments/' + comment.id);
-          remove(deleteRef);
-               // })
-                
-            }
         }
+
+        //Hämta alla html-element som har klassen comment.name
+        //loopa igenom html-elementen INTE comments som är en array med objekt
+        let deletableComment =document.querySelectorAll(`#cars-comments h3` );
+        for(let i=0;i<deletableComment.length;i++){ 
+            if (userName === deletableComment[i].className){
+               
+            deletableComment[i].addEventListener('click',(e)=>{
+                
+                const deleteRef: DatabaseReference = ref(db, '/Comments/' + deletableComment[i].className );
+                 remove(deleteRef);
+                 
+                      
+                console.log('ei')
+             })
+        }}
     })
 }
-
