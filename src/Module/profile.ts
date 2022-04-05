@@ -29,13 +29,9 @@ onValue(dbRef, (snapshot) => {
       divDeleter.addEventListener('click', function (e) {
         const userDeletor: DatabaseReference = ref(db, '/Users/' + myUser.userName);
         remove(userDeletor)
-
         sessionStorage.clear();
         location.replace("index.html");
-
       })
-
-
     }
   }
   for (const user of allUsers) {
