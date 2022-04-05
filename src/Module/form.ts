@@ -63,8 +63,6 @@ function fetchCommentData(type: string) {
 
                     const deleteRef = ref(db, '/Comments/' + deletableComment[i].className);
                     remove(deleteRef);
-
-
                     console.log('ei')
                 })
             }
