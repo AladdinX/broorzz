@@ -3,7 +3,9 @@ body {
    background-color:lightgreen;
     font-family: 'Roboto', sans-serif;
     padding:0;
-    background-image: url(https://i.stack.imgur.com/jGlzr.png);
+    /* background-image: url(https://i.stack.imgur.com/jGlzr.png); */
+    background-color: #3D9970
+    ;
 }
 img{
   height: 100;
@@ -198,6 +200,8 @@ p {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  
+  
 }
 
 #comment-btn-music {
@@ -218,14 +222,44 @@ p {
   margin-right: auto;
 }
 
-#cars {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 #comment-btn-cars {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+
+ul {
+  list-style: none;
+} 
+
+#topicwrapper {
+  display: flex;
+  flex-direction: column; 
+} 
+#Musik {
+  width: 15%;
+  height: 15%;
+  background-color: #333;
+  margin: 1.5rem 0rem;
+  padding: 1.5rem;
+  color:lightgreen;
+}
+#Car {
+  width: 15%;
+  height: 15%;
+  background-color: #333;
+  margin: 1.5rem 0rem;
+  padding: 1.5rem;
+  color:lightgreen;
+}
+
+#Food {
+  width: 15%;
+  height: 15%;
+  background-color: #333;
+  margin: 1.5rem 0rem;
+  padding: 1.5rem;
+  color:lightgreen;
 }
