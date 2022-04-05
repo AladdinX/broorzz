@@ -2,6 +2,7 @@ import { db } from "./firebase";
 import { update, push, ref, DatabaseReference, onValue } from "firebase/database";
 
 export class User {
+  private statusId: string;
   public status: string = 'Hello im using Broorz'
   public readonly id: string;
   private readonly date = new Date();
@@ -68,13 +69,17 @@ export class User {
     const statusRef = ref(db, `/Users/${this.userName}/status`);
     onValue(statusRef, (snapshot) => {
       const statusData = snapshot.val();
-      for (const key in statusData) {
-        console.log(statusData[key].status)
+      for (this.statusId in statusData) {
+        console.log(statusData[this.statusId].status)
         let h5 = document.createElement('h5');
-        h5.innerText = statusData[key].timestamp + statusData[key].status;
+        h5.id = this.statusId;
+        h5.innerText = statusData[this.statusId].timestamp + statusData[this.statusId].status;
         // fixa så det inte går att scrolla
         document.querySelector(`${divId}`).append(h5);
       }
     })
+  }
+  public clearStatus(): void {
+    (document.querySelector(`#${this.statusId}`) as HTMLHeadingElement).remove();
   }
 }
