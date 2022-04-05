@@ -75,7 +75,7 @@ function fetchCommentData(type: string) {
 const musicdiv = document.getElementById('music-div')
 const musik = document.getElementById('Musik')
 musik.addEventListener('click', (): void => {
-    console.log('kas')
+
 
     musicdiv.style.display = 'block'
     carsdiv.style.display = 'none'
