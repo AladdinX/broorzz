@@ -11,11 +11,11 @@ const cars: HTMLTextAreaElement = document.querySelector('#cars');
 
 commentBtn.addEventListener('click', (): void => {
     new Comment(userName, cars.value).sendToDb('cars')
-    fetchCommentData();
+    fetchCommentData('cars');
 })
 
-const fetchCommentData = () => {
-    const dbRef = ref(db, '/Comments/cars')
+const fetchCommentData = (type: string) => {
+    const dbRef = ref(db, `/Comments/${type}`)
     onValue(dbRef, (snapshot) => {
         const CommentData = snapshot.val();
         for (const comment of comments) {
