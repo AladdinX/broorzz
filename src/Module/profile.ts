@@ -15,7 +15,6 @@ onValue(dbRef, (snapshot) => {
         profileData[key].gender,
         profileData[key].img,
         profileData[key].bio));
-
     if (usrName == key) {
       myUser = new User(
         profileData[key].userName,
@@ -24,7 +23,7 @@ onValue(dbRef, (snapshot) => {
         profileData[key].img,
         profileData[key].bio);
       myUser.createProfileDiv('#main-div');
-
+      myUser.getStatus('#old-status');
       const divDeleter: HTMLButtonElement = document.querySelector('#divDeleter')
       divDeleter.addEventListener('click', function (e) {
         const userDeletor: DatabaseReference = ref(db, '/Users/' + myUser.userName);
@@ -38,11 +37,16 @@ onValue(dbRef, (snapshot) => {
     let h3: HTMLHeadingElement = document.createElement('h3');
     h3.innerText = user.userName;
     h3.id = user.userName;
-
     document.querySelector('#profiles-aside').append(h3)
     document.querySelector(`#${user.userName}`).addEventListener('click', () => {
+
       user.createProfileDiv('#main-div')
       user.getStatus('#old-status');
+      if (usrName != user.userName) {
+        (document.querySelector('#divDeleter') as HTMLButtonElement).style.display = 'none';
+        (document.querySelector('#sign-out') as HTMLButtonElement).style.display = 'none';
+        (document.querySelector('#new-status') as HTMLButtonElement).style.display = 'none';
+      }
     })
   }
 })
@@ -52,7 +56,7 @@ document.querySelector('#new-status').addEventListener('click', () => {
   myUser.setStatus();
   myUser.getStatus('#old-status');
 })
-document.querySelector('#sign-up').addEventListener('click', () => {
+document.querySelector('#sign-out').addEventListener('click', () => {
   sessionStorage.clear();
   location.replace("index.html");
 })

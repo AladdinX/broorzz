@@ -46,6 +46,7 @@ export class User {
     update(dbRef, newUser);
   }
   public setStatus(): void {
+    document.querySelector('#old-status').innerHTML = ''
     let statusPrompt = prompt("How do you feel today?");
     const statusRef = ref(db, `/Users/${this.userName}/status`)
     const newKey: string = push(statusRef).key
@@ -72,10 +73,15 @@ export class User {
       for (this.statusId in statusData) {
         let h5 = document.createElement('h5');
         h5.id = this.statusId;
-        h5.innerText = statusData[this.statusId].timestamp + statusData[this.statusId].status;
+        // console.log(this.statusId)
+        h5.innerText = statusData[this.statusId].timestamp + " " + statusData[this.statusId].status;
         // fixa så det inte går att scrolla
         document.querySelector(`${divId}`).append(h5);
       }
     })
+  }
+  public clearStatus(): void {
+    (document.querySelector(`#${this.statusId}`) as HTMLHeadingElement).remove();
+    console.log('hello')
   }
 }
