@@ -177,8 +177,55 @@ p {
   padding-right: 10px;
 }
 
-#thread-container{
+/* #thread-container{
+  
+ display: none; 
 
-display: none;
+} */
+#cars-div {
+  display: none;
+}
 
+#food-div {
+  display: none;
+}
+
+#music-div {
+  display: none;
+}
+
+#music {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#comment-btn-music {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#food {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#comment-btn-food {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#cars {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#comment-btn-cars {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
