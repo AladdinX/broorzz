@@ -20,7 +20,8 @@ export class User {
     let h5: HTMLHeadElement = document.querySelector('#gender');
     let p: HTMLParagraphElement = document.querySelector('#bio');
     let img: HTMLImageElement = document.querySelector('img')
-
+    const divDeleter: HTMLButtonElement = document.createElement('button')
+    divDeleter.innerText = '✖️'
 
 
     h3.innerText = this.userName;
@@ -69,7 +70,6 @@ export class User {
     onValue(statusRef, (snapshot) => {
       const statusData = snapshot.val();
       for (this.statusId in statusData) {
-        console.log(statusData[this.statusId].status)
         let h5 = document.createElement('h5');
         h5.id = this.statusId;
         h5.innerText = statusData[this.statusId].timestamp + statusData[this.statusId].status;
@@ -77,8 +77,5 @@ export class User {
         document.querySelector(`${divId}`).append(h5);
       }
     })
-  }
-  public clearStatus(): void {
-    (document.querySelector(`#${this.statusId}`) as HTMLHeadingElement).remove();
   }
 }
