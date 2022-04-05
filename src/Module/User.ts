@@ -20,8 +20,7 @@ export class User {
     let h5: HTMLHeadElement = document.querySelector('#gender');
     let p: HTMLParagraphElement = document.querySelector('#bio');
     let img: HTMLImageElement = document.querySelector('img')
-    const divDeleter: HTMLButtonElement = document.createElement('button')
-    divDeleter.innerText = '✖️'
+
 
 
     h3.innerText = this.userName;
