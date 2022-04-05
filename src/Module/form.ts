@@ -61,6 +61,7 @@ function fetchCommentData(type: string) {
 const musicdiv = document.getElementById('music-div')
 const musik = document.getElementById('Musik')
 musik.addEventListener('click', (): void => {
+    fetchCommentData('music');
     musicdiv.style.display = 'block'
     carsdiv.style.display = 'none'
     fooddiv.style.display = 'none'
@@ -69,6 +70,7 @@ musik.addEventListener('click', (): void => {
 const carsdiv = document.getElementById('cars-div')
 const car = document.getElementById('Car')
 car.addEventListener('click', (): void => {
+    fetchCommentData('cars');
     carsdiv.style.display = 'block'
     musicdiv.style.display = 'none'
     fooddiv.style.display = 'none'
@@ -77,6 +79,7 @@ car.addEventListener('click', (): void => {
 const fooddiv = document.getElementById('food-div')
 const Food = document.getElementById('Food')
 Food.addEventListener('click', (): void => {
+    fetchCommentData('food');
     carsdiv.style.display = 'none'
     musicdiv.style.display = 'none'
     fooddiv.style.display = 'block'
@@ -91,5 +94,4 @@ function deleteComment(subject: string, id: string) {
         const deleteRef: DatabaseReference = ref(db, '/Comments/' + '/' + subject + '/' + id);
         remove(deleteRef);
     })
-
 }
