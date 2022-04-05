@@ -179,17 +179,21 @@ p {
   padding-right: 10px;
 }
 
-/* #thread-container{
-  
- display: none; 
+ #thread-container{
+display: flex;
+flex-direction: column;
 
-} */
+}
 #cars-div {
   display: none;
   text-align: center;
+  height: fit-content;
 
 }
+#cars {
+resize: none;
 
+}
 #food-div {
   display: none;
 }
@@ -240,16 +244,19 @@ ul {
   display: flex;
   flex-direction: column; 
 } 
+
 #Musik {
-  width: 15%;
+
   height: 15%;
   background-color: #333;
   margin: 1.5rem 0rem;
   padding: 1.5rem;
   color:lightgreen;
+  width: fit-content;
+  
 }
 #Car {
-  width: 15%;
+  width: fit-content;
   height: 15%;
   background-color: #333;
   margin: 1.5rem 0rem;
@@ -258,10 +265,23 @@ ul {
 }
 
 #Food {
-  width: 15%;
+  width: fit-content;
   height: 15%;
   background-color: #333;
   margin: 1.5rem 0rem;
   padding: 1.5rem;
   color:lightgreen;
 }
+#main-div {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+.row {
+  width: 250px;
+}
+
+/* ul {
+  width: 250px;
+} */
