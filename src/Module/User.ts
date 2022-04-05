@@ -15,11 +15,10 @@ export class User {
   }
   //change this somehow or have clean function
   public createProfileDiv(divId: string) {
-    const div: HTMLDivElement = document.createElement('div');
-    let h3: HTMLHeadingElement = document.createElement('h3');
-    let h5: HTMLHeadElement = document.createElement('h5');
-    let p: HTMLParagraphElement = document.createElement('p');
-    let img: HTMLImageElement = document.createElement('img')
+    let h3: HTMLHeadingElement = document.querySelector('#user-name');
+    let h5: HTMLHeadElement = document.querySelector('#gender');
+    let p: HTMLParagraphElement = document.querySelector('#bio');
+    let img: HTMLImageElement = document.querySelector('img')
     const divDeleter: HTMLButtonElement = document.createElement('button')
     divDeleter.innerText = '✖️'
 
@@ -28,8 +27,7 @@ export class User {
     h5.innerText = this.gender;
     p.innerText = this.bio;
     img.src = this.emogi;
-    div.append(h3, h5, p, img, divDeleter);
-    document.querySelector(`${divId}`).append(div)
+    // document.querySelector(`${divId}`).append(div)
   }
 
   public sendToDb(): void {
@@ -61,7 +59,6 @@ export class User {
         ":" +
         this.date.getMinutes() + ": ",
       status: statusPrompt.valueOf()
-
     }
     const newStatus = {};
     newStatus[newKey] = statusToAdd;
@@ -74,7 +71,7 @@ export class User {
       for (const key in statusData) {
         console.log(statusData[key].status)
         let h5 = document.createElement('h5');
-        h5.innerText = statusData[key].status + statusData[key].timestamp;
+        h5.innerText = statusData[key].timestamp + statusData[key].status;
         // fixa så det inte går att scrolla
         document.querySelector(`${divId}`).append(h5);
       }
