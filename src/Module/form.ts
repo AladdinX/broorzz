@@ -1,44 +1,43 @@
 import { db } from "./firebase";
-import { update, push, ref, onValue, remove } from "firebase/database";
+import { ref, onValue, remove, DatabaseReference, push } from "firebase/database";
 import { Comment } from "./Comment";
 
 let userName: string = sessionStorage.getItem('usrName');
 let comments: Comment[] = [];
 
-const carsCmnt: HTMLDivElement = document.querySelector('#cars-comments');
 const carsBtn: HTMLButtonElement = document.querySelector('#comment-btn-cars');
 const cars: HTMLTextAreaElement = document.querySelector('#cars');
 
 carsBtn.addEventListener('click', (): void => {
-    new Comment(userName, cars.value).sendToDb('cars')
+    const carRef: DatabaseReference = ref(db, `/Comments/cars`);
+    const newKey: string = push(carRef).key;
+    new Comment(userName, cars.value, newKey).sendToDb('cars', newKey, carRef)
     fetchCommentData('cars');
 })
 
-const musicCmnt: HTMLDivElement = document.querySelector('#music-comments');
 const musicBtn: HTMLButtonElement = document.querySelector('#comment-btn-music');
 const music: HTMLTextAreaElement = document.querySelector('#music');
 
 musicBtn.addEventListener('click', (): void => {
-    new Comment(userName, music.value).sendToDb('music')
+    const musicRef: DatabaseReference = ref(db, `/Comments/music`);
+    const newKey: string = push(musicRef).key;
+    new Comment(userName, music.value, newKey).sendToDb('cars', newKey, musicRef);
     fetchCommentData('music');
 })
 
-const foodCmnt: HTMLDivElement = document.querySelector('#food-comments');
 const foodBtn: HTMLButtonElement = document.querySelector('#comment-btn-food');
 const food: HTMLTextAreaElement = document.querySelector('#food');
 
 foodBtn.addEventListener('click', (): void => {
-    new Comment(userName, food.value).sendToDb('food')
+    const foodRef: DatabaseReference = ref(db, `/Comments/food`);
+    const newKey: string = push(foodRef).key;
+    new Comment(userName, food.value, newKey).sendToDb('cars', newKey, foodRef);
     fetchCommentData('food');
 })
 
 
-
-
-
-
 function fetchCommentData(type: string) {
-    const dbRef = ref(db, `/Comments/${type}`)
+    const dbRef = ref(db, `/Comments/${type}`);
     onValue(dbRef, (snapshot) => {
         const CommentData = snapshot.val();
         for (const comment of comments) {
@@ -48,28 +47,20 @@ function fetchCommentData(type: string) {
         for (const key in CommentData) {
             comments.push(new Comment(
                 CommentData[key].usrName,
-                CommentData[key].comment
+                CommentData[key].comment,
+                key
             ));
         }
         for (const comment of comments) {
             comment.displayComment(`#${type}-comments`);
-            if (userName === comment.name) {
-                console.log(comment.name)
-                let deletableComment = document.querySelectorAll(`.${comment.name}`);
-                for (let i = 0; i < deletableComment.length; i++) {
-                    document.querySelector(`.${comment.name}`).addEventListener('click', () => {
-                        console.log('ghj')
-                    })
-                }
-            }
+            if (comment.name == userName) { deleteComment(type, comment.id); }
         }
     })
 }
+
 const musicdiv = document.getElementById('music-div')
 const musik = document.getElementById('Musik')
 musik.addEventListener('click', (): void => {
-
-
     musicdiv.style.display = 'block'
     carsdiv.style.display = 'none'
     fooddiv.style.display = 'none'
@@ -90,3 +81,15 @@ Food.addEventListener('click', (): void => {
     musicdiv.style.display = 'none'
     fooddiv.style.display = 'block'
 })
+
+
+
+function deleteComment(subject: string, id: string) {
+    const commentH3: HTMLHeadingElement = document.querySelector(`#${id}`);
+    commentH3.style.color = 'white';
+    commentH3.addEventListener('click', () => {
+        const deleteRef: DatabaseReference = ref(db, '/Comments/' + '/' + subject + '/' + id);
+        remove(deleteRef);
+    })
+
+}
