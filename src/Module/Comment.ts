@@ -28,4 +28,5 @@ export class Comment {
     newUser[newKey] = commentToAdd;
     update(dbRef, newUser);
   }
+  
 }
