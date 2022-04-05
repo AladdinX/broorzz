@@ -186,6 +186,8 @@ p {
 } */
 #cars-div {
   display: none;
+  text-align: center;
+
 }
 
 #food-div {
