@@ -34,8 +34,31 @@ foodBtn.addEventListener('click', (): void => {
 })
 
 
+const musicdiv = document.getElementById('music-div')
+const musik = document.getElementById('Musik')
+musik.addEventListener('click', (): void => {
+    console.log('kas')
 
+    musicdiv.style.display = 'block'
+    carsdiv.style.display = 'none'
+    fooddiv.style.display = 'none'
+})
 
+const carsdiv = document.getElementById('cars-div')
+const car = document.getElementById('Car')
+car.addEventListener('click', (): void => {
+    carsdiv.style.display = 'block'
+    musicdiv.style.display = 'none'
+    fooddiv.style.display = 'none'
+})
+
+const fooddiv = document.getElementById('food-div')
+const Food = document.getElementById('Food')
+Food.addEventListener('click', (): void => {
+    carsdiv.style.display = 'none'
+    musicdiv.style.display = 'none'
+    fooddiv.style.display = 'block'
+})
 
 
 function fetchCommentData(type: string) {
