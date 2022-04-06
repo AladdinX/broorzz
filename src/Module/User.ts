@@ -12,8 +12,7 @@ export class User {
     private readonly gender: string,
     private readonly emogi: string,
     private readonly bio: string
-  ) {
-  }
+  ) { }
   //change this somehow or have clean function
   public createProfileDiv(divId: string) {
     let h3: HTMLHeadingElement = document.querySelector('#user-name');

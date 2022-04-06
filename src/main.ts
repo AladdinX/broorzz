@@ -1,4 +1,3 @@
-import { User } from "./Module/User";
 import { ref, onValue, update, remove, push, get, child, getDatabase, DataSnapshot } from "firebase/database";
 import { db } from "./Module/firebase";
 const loginBox: HTMLDivElement = document.querySelector('.login-box')
@@ -30,4 +29,3 @@ document.getElementById("login-btn").addEventListener("click", (e: Event) => {
     }
   });
 });
-
