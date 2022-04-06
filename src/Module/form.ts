@@ -61,7 +61,7 @@ Food.addEventListener('click', (): void => {
 //Users can delete there old comments  
 function deleteComment(subject: string, id: string) {
     const commentH3: HTMLHeadingElement = document.querySelector(`#${id}`);
-    commentH3.style.color = 'white';
+    commentH3.style.color = 'wheat';
     commentH3.addEventListener('click', () => {
         const deleteRef: DatabaseReference = ref(db, '/Comments/' + '/' + subject + '/' + id);
         remove(deleteRef);
