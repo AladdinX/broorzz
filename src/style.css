@@ -182,23 +182,43 @@ p {
  #thread-container{
 display: flex;
 flex-direction: column;
-
+align-items: center;
+justify-content: center;
+text-align: center;
 }
+#thread-aside {
+  display: flex;
+  flex: 1;
+}
+
+#main-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
 #cars-div {
   display: none;
   text-align: center;
-  height: fit-content;
 
 }
 #cars {
 resize: none;
+
 }
+
 #food-div {
   display: none;
+  text-align: center;
+  height: fit-content;
+ 
 }
 
 #music-div {
   display: none;
+  text-align: center;
+  height: fit-content;
 }
 
 #music {
@@ -239,10 +259,11 @@ ul {
   list-style: none;
 } 
 
-#topicwrapper {
+ #topicwrapper {
   display: flex;
-  flex-direction: column; 
-} 
+  flex-direction: row; 
+
+}   
 
 #Musik {
 
@@ -270,20 +291,23 @@ ul {
   margin: 1.5rem 0rem;
   padding: 1.5rem;
   color:lightgreen;
+  
 }
-#main-div {
+/* #main-div {
   margin: auto;
   width: 50%;
   padding: 10px;
-}
+} */
+
 
 .row {
   width: 250px;
 }
 
-/* ul {
-  width: 250px;
-} */
+#topics {
+display: flex;
+flex-direction: column;
+}
 
   aside {
     width: 20%;
@@ -298,4 +322,13 @@ ul {
     height: 450px;
     overflow: auto;
     text-align: justify;
+  }
+
+  #cars {
+    resize: none;
+  box-shadow: 2px 2px 2px #8fa0a6;
+  }
+
+  #cars-comment {
+    height: 5x;
   }
