@@ -192,7 +192,6 @@ flex-direction: column;
 }
 #cars {
 resize: none;
-
 }
 #food-div {
   display: none;
@@ -272,7 +271,6 @@ ul {
   padding: 1.5rem;
   color:lightgreen;
 }
-<<<<<<< Updated upstream
 #main-div {
   margin: auto;
   width: 50%;
@@ -286,7 +284,6 @@ ul {
 /* ul {
   width: 250px;
 } */
-=======
 
   aside {
     width: 20%;
@@ -302,4 +299,3 @@ ul {
     overflow: auto;
     text-align: justify;
   }
->>>>>>> Stashed changes

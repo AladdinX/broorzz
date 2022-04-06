@@ -8,6 +8,7 @@ let allUsers: User[] = [];
 const dbRef = ref(db, '/Users')
 onValue(dbRef, (snapshot) => {
   const profileData = snapshot.val();
+  allUsers = [];
   for (const key in profileData) {
     allUsers.push(new User
       (profileData[key].userName,
@@ -37,9 +38,8 @@ onValue(dbRef, (snapshot) => {
     let h3: HTMLHeadingElement = document.createElement('h3');
     h3.innerText = user.userName;
     h3.id = user.userName;
-    document.querySelector('#profiles-aside').append(h3)
+    document.querySelector('#profiles-aside').append(h3);
     document.querySelector(`#${user.userName}`).addEventListener('click', () => {
-
       user.createProfileDiv('#main-div')
       user.getStatus('#old-status');
       if (usrName != user.userName) {
@@ -52,7 +52,7 @@ onValue(dbRef, (snapshot) => {
 })
 
 document.querySelector('#new-status').addEventListener('click', () => {
-  document.querySelector('#old-status').innerHTML = ''
+  document.querySelector('#profiles-aside').innerHTML = '';
   myUser.setStatus();
   myUser.getStatus('#old-status');
 })
