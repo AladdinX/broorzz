@@ -46,7 +46,8 @@ export class User {
     update(dbRef, newUser);
   }
   public setStatus(): void {
-    document.querySelector('#old-status').innerHTML = ''
+    document.querySelector('#old-status').innerHTML = '';
+    document.querySelector('#profiles-aside').innerHTML = '';
     let statusPrompt = prompt("How do you feel today?");
     const statusRef = ref(db, `/Users/${this.userName}/status`)
     const newKey: string = push(statusRef).key
@@ -67,6 +68,7 @@ export class User {
     update(statusRef, newStatus);
   }
   public getStatus(divId: string): void {
+    document.querySelector('#old-status').innerHTML = '';
     const statusRef = ref(db, `/Users/${this.userName}/status`);
     onValue(statusRef, (snapshot) => {
       const statusData = snapshot.val();
@@ -80,8 +82,8 @@ export class User {
       }
     })
   }
-  public clearStatus(): void {
-    (document.querySelector(`#${this.statusId}`) as HTMLHeadingElement).remove();
+  public clearDom(): void {
+    (document.querySelector(`#${this.userName}`) as HTMLHeadingElement).remove();
     console.log('hello')
   }
 }
