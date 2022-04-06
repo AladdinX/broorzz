@@ -72,9 +72,7 @@ export class User {
       for (this.statusId in statusData) {
         let h5 = document.createElement('h5');
         h5.id = this.statusId;
-        // console.log(this.statusId)
         h5.innerText = statusData[this.statusId].timestamp + " " + statusData[this.statusId].status;
-        // fixa så det inte går att scrolla
         document.querySelector(`${divId}`).append(h5);
       }
     })
