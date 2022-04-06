@@ -5,7 +5,8 @@ import { remove, update, push, ref, DatabaseReference, onValue, DataSnapshot } f
 const usrName = sessionStorage.getItem('usrName');
 let myUser: User;
 let allUsers: User[] = [];
-const dbRef = ref(db, '/Users')
+const dbRef: DatabaseReference = ref(db, '/Users')
+//When any changes happened 
 onValue(dbRef, (snapshot) => {
   const profileData = snapshot.val();
   allUsers = [];
@@ -25,7 +26,7 @@ onValue(dbRef, (snapshot) => {
         profileData[key].bio);
       myUser.createProfileDiv('#main-div');
       myUser.getStatus('#old-status');
-      const divDeleter: HTMLButtonElement = document.querySelector('#divDeleter')
+      const divDeleter: HTMLButtonElement = document.querySelector('#divDeleter');
       divDeleter.addEventListener('click', function (e) {
         const userDeletor: DatabaseReference = ref(db, '/Users/' + myUser.userName);
         remove(userDeletor)
@@ -39,6 +40,7 @@ onValue(dbRef, (snapshot) => {
     h3.innerText = user.userName;
     h3.id = user.userName;
     document.querySelector('#profiles-aside').append(h3);
+    //when you click on username so you can see the user profile and the old status
     document.querySelector(`#${user.userName}`).addEventListener('click', () => {
       user.createProfileDiv('#main-div')
       user.getStatus('#old-status');
