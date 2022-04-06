@@ -10,10 +10,9 @@ export class User {
     public readonly userName: string,
     public readonly password: string,
     private readonly gender: string,
-    private readonly emogi: string,
+    private readonly emoji: string,
     private readonly bio: string
   ) { }
-  //change this somehow or have clean function
   public createProfileDiv(divId: string) {
     let h3: HTMLHeadingElement = document.querySelector('#user-name');
     let h5: HTMLHeadElement = document.querySelector('#gender');
@@ -26,8 +25,7 @@ export class User {
     h3.innerText = this.userName;
     h5.innerText = this.gender;
     p.innerText = this.bio;
-    img.src = this.emogi;
-    // document.querySelector(`${divId}`).append(div)
+    img.src = this.emoji;
   }
 
   public sendToDb(): void {
@@ -36,7 +34,7 @@ export class User {
       password: this.password,
       gender: this.gender,
       bio: this.bio,
-      img: this.emogi
+      img: this.emoji
     }
     const dbRef: DatabaseReference = ref(db, '/Users');
     const newKey: string = this.userName;
@@ -74,9 +72,7 @@ export class User {
       for (this.statusId in statusData) {
         let h5 = document.createElement('h5');
         h5.id = this.statusId;
-        // console.log(this.statusId)
         h5.innerText = statusData[this.statusId].timestamp + " " + statusData[this.statusId].status;
-        // fixa så det inte går att scrolla
         document.querySelector(`${divId}`).append(h5);
       }
     })
