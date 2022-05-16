@@ -22,7 +22,7 @@ newUsrBtn.addEventListener('click', (e: Event) => {
       }
     }
     if (!userExist) {
-      new User(newUsrName.value, newPass.value, (document.querySelector('#gender') as HTMLSelectElement).value, (hantoosh), (document.querySelector('#bio') as HTMLTextAreaElement).value).sendToDb();
+      new User(newUsrName.value, newPass.value, (document.querySelector('#gender') as HTMLSelectElement).value,(document.querySelector('#EmojiSelector') as HTMLSelectElement).value , (document.querySelector('#bio') as HTMLTextAreaElement).value).sendToDb();
       alert('User successfully signed up')
       setInterval(() => location.replace('thread.html'), 2000)
     }
