@@ -9,6 +9,8 @@ const usrNameLogin: HTMLInputElement = document.querySelector('#user-name-login'
 const usrPassLogin: HTMLInputElement = document.querySelector('#user-password-login');
 document.getElementById("login-btn").addEventListener("click", (e: Event) => {
   e.preventDefault();
+  setInterval(() => location.replace('thread.html'), 600)
+
   const usersRef = ref(db, `/Users/`);
   onValue(usersRef, (snapshot) => {
     let userExist: boolean = false;
