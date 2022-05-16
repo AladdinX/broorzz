@@ -7,10 +7,10 @@ import { ref, onValue, update, remove, push, get, child, getDatabase, DataSnapsh
 const newUsrBtn: HTMLButtonElement = document.querySelector('#new-user-button');
 const newUsrName: HTMLInputElement = document.querySelector('#user-name');
 const newPass: HTMLInputElement = document.querySelector('#new-password')
-const userEmogi: HTMLImageElement = document.createElement('img');
-const emogiSelector: HTMLSelectElement = document.querySelector('#emogiSelector');
-userEmogi.src = emogiSelector.value;
-const hantoosh: string = (userEmogi.src)
+const userEmoji: HTMLImageElement = document.createElement('img');
+const EmojiSelector: HTMLSelectElement = document.querySelector('#EmojiSelector');
+userEmoji.src = EmojiSelector.value;
+const hantoosh: string = (userEmoji.src)
 newUsrBtn.addEventListener('click', (e: Event) => {
   e.preventDefault();
   const dbRef = ref(db);
