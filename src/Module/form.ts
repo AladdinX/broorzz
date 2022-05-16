@@ -20,22 +20,38 @@ const Food = document.getElementById('Food') as HTMLButtonElement;
 
 //Different comment button
 carsBtn.addEventListener('click', (): void => {
-    const carRef: DatabaseReference = ref(db, `/Comments/cars`);
-    const newKey: string = push(carRef).key;
-    new Comment(userName, cars.value, newKey).sendToDb('cars', newKey, carRef)
-    fetchCommentData('cars');
+    if (userName != null) {
+        const carRef: DatabaseReference = ref(db, `/Comments/cars`);
+        const newKey: string = push(carRef).key;
+        new Comment(userName, cars.value, newKey).sendToDb('cars', newKey, carRef)
+        fetchCommentData('cars');
+    }
+    else {
+        alert(" Please LOGIN so you can make Comment!")
+    }
 })
 musicBtn.addEventListener('click', (): void => {
-    const musicRef: DatabaseReference = ref(db, `/Comments/music`);
-    const newKey: string = push(musicRef).key;
-    new Comment(userName, music.value, newKey).sendToDb('cars', newKey, musicRef);
-    fetchCommentData('music');
+    if (userName != null) {
+        const musicRef: DatabaseReference = ref(db, `/Comments/music`);
+        const newKey: string = push(musicRef).key;
+        new Comment(userName, music.value, newKey).sendToDb('cars', newKey, musicRef);
+        fetchCommentData('music');
+    }
+    else {
+        alert(" Please LOGIN so you can make Comment!")
+    }
+
 })
 foodBtn.addEventListener('click', (): void => {
-    const foodRef: DatabaseReference = ref(db, `/Comments/food`);
-    const newKey: string = push(foodRef).key;
-    new Comment(userName, food.value, newKey).sendToDb('cars', newKey, foodRef);
-    fetchCommentData('food');
+    if (userName != null) {
+        const foodRef: DatabaseReference = ref(db, `/Comments/food`);
+        const newKey: string = push(foodRef).key;
+        new Comment(userName, food.value, newKey).sendToDb('cars', newKey, foodRef);
+        fetchCommentData('food');
+    } else {
+        alert(" Please LOGIN so you can make Comment!")
+    }
+
 })
 
 //Styling
@@ -61,7 +77,7 @@ Food.addEventListener('click', (): void => {
 //Users can delete there old comments  
 function deleteComment(subject: string, id: string) {
     const commentH3: HTMLHeadingElement = document.querySelector(`#${id}`);
-    commentH3.style.color = 'white';
+    commentH3.style.color = 'wheat';
     commentH3.addEventListener('click', () => {
         const deleteRef: DatabaseReference = ref(db, '/Comments/' + '/' + subject + '/' + id);
         remove(deleteRef);

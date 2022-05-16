@@ -15,7 +15,8 @@ export class Comment {
     const h3: HTMLHeadingElement = document.createElement('h3');
     h3.className = this.name;
     h3.id = this.id;
-    h3.innerText = `${this.name}-::: ${this.comment}`;
+    h3.innerText = `${this.name}: ${this.comment}`;
+    h3.style.color='black'
     document.querySelector(`${divId}`).append(h3);
   }
   //Send the comment to DB, parameters are many so it will work when we send the comment to different subjects
